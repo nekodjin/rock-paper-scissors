@@ -1,0 +1,10 @@
+[package]
+name = "rps"
+version = "0.1.0"
+edition = "2021"
+license = "BSD-3-Clause"
+authors = ["Avery R. <contact@nekodjin.xyz>"]
+
+[dependencies]
+rand = "^0.8.4"
+
