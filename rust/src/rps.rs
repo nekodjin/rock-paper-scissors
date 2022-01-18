@@ -36,7 +36,11 @@ impl PartialOrd for RPS {
             return Some(Ordering::Less);
         }
 
-        return rhs.partial_cmp(self);
+        return rhs.partial_cmp(self).map(|inner| match inner {
+            Ordering::Equal   => Ordering::Equal,
+            Ordering::Greater => Ordering::Less,
+            Ordering::Less    => Ordering::Greater,
+        });
     }
 }
 
