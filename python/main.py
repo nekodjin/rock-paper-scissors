@@ -13,12 +13,12 @@ gamestate_map = [
 ]
 
 def looping(func):
-    s = object()
+    loop = object()
     
     def inner():
         t = None
 
-        while s is (t := func(s)):
+        while loop is (t := func(s)):
             pass
         
         return t
@@ -42,7 +42,7 @@ def get_rand_rps():
     return randrange(0, 3)
 
 @looping
-def get_player_rps(s):
+def get_player_rps(loop):
     player = input("Enter your choice: ")
 
     if player == rps_map[0]:
@@ -54,10 +54,10 @@ def get_player_rps(s):
     
     print("Not a valid choice. Try again.")
 
-    return s
+    return loop
 
 @looping
-def main_loop(s):
+def main_loop(loop):
     player = get_player_rps()
     computer = get_rand_rps()
 
@@ -72,7 +72,8 @@ def main_loop(s):
 
     print("Type 'yes' to play again.")
 
-    return s if input() == "yes" else None
+    if input() == "yes":
+        return loop
 
 def main():
     print("Welcome to nekodjin's Rock, Paper, Scissors!")
