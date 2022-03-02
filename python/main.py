@@ -18,7 +18,7 @@ def looping(func):
     def inner():
         t = None
 
-        while s == (t := func(s)):
+        while s is (t := func(s)):
             pass
         
         return t
